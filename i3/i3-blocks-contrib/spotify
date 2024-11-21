@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# i3blocks spotify script
+
+# using this one, because i couldnt parse the title and artist using awk and sed
+# also tried javascript but didnt work
+
+spotifycli --status
+
+case $BLOCK_BUTTON in
+  1) spotifycli --prev ;;  # left click, previous
+  2) spotifycli --playpause ;; # middle click, play/pause
+  3) spotifycli --next ;; # right click, next
+esac

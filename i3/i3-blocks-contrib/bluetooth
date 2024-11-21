@@ -1,0 +1,18 @@
+#!/bin/bash
+
+case "$BLOCK_BUTTON" in
+    1) bluetoothctl power on ;;    # Left click to power on
+    2) bluetoothctl power off ;;  # Middle click to power off
+    3) bluetoothctl devices ;;    # Right click to list devices
+esac
+
+if bluetoothctl show | grep -q "Powered: yes"; then
+    DEVICES=$(bluetoothctl devices Connected | awk '{print $3}')
+    if [ -z "$DEVICES" ]; then
+        echo "Bluetooth: On (No devices connected)"
+    else
+        echo "Bluetooth: On ($DEVICES)"
+    fi
+else
+    echo "Bluetooth: Off"
+fi

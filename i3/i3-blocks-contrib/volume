@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Get the default sink
+DEFAULT_SINK=$(pactl get-default-sink)
+
+# Get the current volume of the default sink
+VOLUME=$(pactl get-sink-volume "$DEFAULT_SINK" | grep -oP '\d+(?=%)' | head -1)
+
+# Get the mute status
+MUTE=$(pactl get-sink-mute "$DEFAULT_SINK" | grep -oP '(?<=Mute: ).*')
+
+# Output the volume or mute status
+if [[ "$MUTE" == "yes" ]]; then
+    echo "Muted"
+else
+    echo "$VOLUME%"
+fi
