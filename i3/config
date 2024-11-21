@@ -132,6 +132,8 @@ default_border pixel 0
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
+exec --no-startup-id xset -dpms
+
 bar {
     status_command CONTRIB_SCRIPT_DIR=~/.config/i3/i3-blocks-contrib DEFAULT_SCRIPT_DIR=/usr/share/i3blocks i3blocks -c ~/.config/i3/i3blocks.conf
 }
