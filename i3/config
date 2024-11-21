@@ -66,8 +66,6 @@ bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
 
-#bindsym $mod+d focus child
-
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -108,6 +106,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs out of X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+t exec  ~/.config/i3/screenlayout/toggle_screen.sh
+
 mode "resize" {
     bindsym j resize shrink width 10 px or 10 ppt
     bindsym k resize grow height 10 px or 10 ppt
@@ -129,6 +129,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 default_border pixel 0
+
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 bar {
     status_command CONTRIB_SCRIPT_DIR=~/.config/i3/i3-blocks-contrib DEFAULT_SCRIPT_DIR=/usr/share/i3blocks i3blocks -c ~/.config/i3/i3blocks.conf
