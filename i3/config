@@ -17,6 +17,8 @@ client.placeholder      #1f2937  #0a1120   #6b7280   #475569   #1f2937
 
 client.background       #0d1117
 
+for_window [class=".*"] border pixel 2
+
 # kitty seems to have internal window decorations, its possible to disable that too i think,
 # but instead im forcing the border to appear on it, the pixel value here needs to be less than the
 # actual i3 value because it seems like its making a sum of these values ( i3's border + kitty's internal border)
