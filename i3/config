@@ -8,6 +8,20 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id nm-applet
 
+#                       border   backgr.    text    indicator child_border
+client.focused          #3b82f6  #1e293b   #ffffff   #60a5fa   #3b82f6
+client.focused_inactive #64748b  #0f172a   #d1d5db   #4b5563   #64748b
+client.unfocused        #1e293b  #0a1120   #94a3b8   #374151   #0a1120
+client.urgent           #ef4444  #370617   #ffffff   #fb7185   #ef4444
+client.placeholder      #1f2937  #0a1120   #6b7280   #475569   #1f2937
+
+client.background       #0d1117
+
+# kitty seems to have internal window decorations, its possible to disable that too i think,
+# but instead im forcing the border to appear on it, the pixel value here needs to be less than the
+# actual i3 value because it seems like its making a sum of these values ( i3's border + kitty's internal border)
+for_window [class="kitty"] border pixel 1
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+11 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+11 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+11 i3blocks
@@ -30,10 +44,10 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -50,9 +64,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
+bindsym $mod+Shift+h split h
 
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
 
 bindsym $mod+f fullscreen toggle
 
@@ -127,8 +141,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-default_border pixel 0
 
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
