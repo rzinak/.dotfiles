@@ -1,0 +1,17 @@
+window-decoration=false
+font-family=
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family-bold = "JetBrainsMono Nerd Font Mono Extra Bold"
+font-family-italic = "JetBrainsMono Nerd Font Mono Italic"
+font-family-bold-italic = "JetBrainsMono Nerd Font Mono Extra Bold Italic"
+font-size=10
+background=121212
+# foreground=bbbbbb
+foreground=ffffff
+cursor-color=bbbbbb
+selection-background=b4d5ff
+selection-foreground=121212
+# palette="121212 fa2573 97e123 dfd460 0f7fcf 8700ff 42a7cf bbbbbb 545454 f5669c b0e05e fef26c 00afff af87ff 50cdfe ffffff"
+window-padding-x=2,4
+window-padding-y=3
+window-padding-color="background"
