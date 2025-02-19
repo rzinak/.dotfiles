@@ -599,7 +599,13 @@ require('lazy').setup({
         for type, icon in pairs(signs) do
           diagnostic_signs[vim.diagnostic.severity[type]] = icon
         end
-        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+        vim.diagnostic.config {
+          virtual_text = true, -- Enable inline diagnostics (virtual text)
+          signs = true, -- Enable signs in the gutter
+          underline = true, -- Enable underline for diagnostics
+          update_in_insert = false, -- Don't update diagnostics while in insert mode
+          severity_sort = true, -- Sort diagnostics by severity
+        }
       end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -849,7 +855,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'oldworld'
+      vim.cmd.colorscheme 'mellifluous'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
