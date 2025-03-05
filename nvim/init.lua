@@ -90,6 +90,13 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- set autocomplete for nvlime
+vim.g.nvlime_config = {
+  cmp = {
+    enabled = true,
+  },
+}
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -839,8 +846,14 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'nvlime' },
         },
       }
+      require('cmp').setup.filetype({ 'lisp' }, {
+        sources = {
+          { name = 'nvlime' },
+        },
+      })
     end,
   },
 
