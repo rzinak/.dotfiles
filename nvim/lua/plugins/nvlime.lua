@@ -1,6 +1,7 @@
 return {
   'monkoose/nvlime',
   -- version = '*',
+  enabled = false,
   dependencies = {
     'monkoose/parsley',
   },

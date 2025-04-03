@@ -91,9 +91,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- set autocomplete for nvlime
+-- Initialize nvlime_config for autocompletion
 vim.g.nvlime_config = {
   cmp = {
-    enabled = true,
+    enabled = true, -- Enable nvim-cmp integration
   },
 }
 
@@ -849,9 +850,11 @@ require('lazy').setup({
           { name = 'nvlime' },
         },
       }
+      -- Add this AFTER the general cmp.setup() configuration
       require('cmp').setup.filetype({ 'lisp' }, {
         sources = {
-          { name = 'nvlime' },
+          { name = 'nvlime' }, -- Add nvlime as a source for Lisp files
+          -- Add other sources if needed, e.g., 'buffer', 'path', etc.
         },
       })
     end,
@@ -868,7 +871,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'mellifluous'
+      vim.cmd.colorscheme 'gruber-darker'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
