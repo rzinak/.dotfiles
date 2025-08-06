@@ -35,10 +35,22 @@ vim.g.nvlime_config = {
 }
 
 vim.g.have_nerd_font = true
-vim.o.tabstop = 2
-vim.o.expandtab = true
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
+-- vim.o.tabstop = 2
+-- vim.o.expandtab = true
+-- vim.o.softtabstop = 2
+-- vim.o.shiftwidth = 2
+
+vim.o.tabstop = 4 -- 4 spaces per tab
+vim.o.shiftwidth = 4 -- indentation width
+vim.o.softtabstop = 4 -- spaces when pressing Tab
+vim.o.expandtab = false -- use tabs, not spaces
+vim.o.smarttab = true -- smart tabs (used in WebStorm)
+vim.o.autoindent = true -- auto-indent new lines
+vim.o.smartindent = true -- smart autoindent when starting new lines
+
+-- Line wrap and margin
+vim.o.textwidth = 999 -- emulate RIGHT_MARGIN = 999
+vim.o.colorcolumn = '999' -- visual margin guide (optional)
 
 vim.opt.number = true
 
@@ -403,6 +415,11 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         java = { 'google-java-format' },
+        javascript = { 'prettier', '--tab-width', '2', '--use-tabs', 'false' },
+        typescript = { 'prettier', '--tab-width', '2', '--use-tabs', 'false' },
+        json = { 'prettier' },
+        html = { 'prettier' },
+        css = { 'prettier' },
       },
     },
   },
@@ -484,7 +501,8 @@ require('lazy').setup({
     'folke/tokyonight.nvim',
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'gruber-darker'
+      -- vim.cmd.colorscheme 'gruber-darker'
+      vim.cmd.colorscheme 'kanagawa-lotus'
 
       vim.cmd.hi 'Comment gui=none'
     end,
@@ -543,3 +561,6 @@ require('lazy').setup({
     },
   },
 })
+
+vim.o.termguicolors = true
+vim.o.background = 'light'
