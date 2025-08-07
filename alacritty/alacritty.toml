@@ -1,53 +1,14 @@
 [font]
-  normal = { family = "JetBrainsMono Nerd Font Mono" }
-  # bold = { family = "JetBrainsMono Nerd Font Mono Extra Bold" }
-  # italic = { family = "JetBrainsMono Nerd Font Mono Extra Bold Italic" }
-  # bold_italic = { family = "JetBrainsMono Nerd Font Extra Bold Italic" }
-  size = 10.0
-  # these fonts are bugging, using only normal works fine
+size = 12.0
 
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
 
-# [bell]
-#   animation = "None"
-#   duration = 0
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
 
-# [cursor]
-#   text = "#c9c7cd"
-#   cursor = "#c9c7cd"
-
-# [colors]
-#   primary.foreground = "#c9c7cd"
-#   primary.background = "#161617"
-#   selection.text = "#c9c7cd"
-#   selection.background = "#3C3B3E"
-#
-#   [colors.normal]
-#   black = "#27272a"
-#   red = "#ea83a5"
-#   green = "#90b99f"
-#   yellow = "#e6b99d"
-#   blue = "#9ca2cf"
-#   magenta = "#aca1cf"
-#   cyan = "#85b5ba"
-#   white = "#c9c7cd"
-#
-#   [colors.bright]
-#   black = "#353539"
-#   red = "#ED96B3"
-#   green = "#a7c8b3"
-#   yellow = "#eac5ae"
-#   blue = "#acb1d7"
-#   magenta = "#b7aed5"
-#   cyan = "#97c0c4"
-#   white = "#d3d1d7"
-
-# [tab_bar]
-#   active_tab_foreground = "#c9c7cd"
-#   active_tab_background = "#353539"
-#   inactive_tab_foreground = "#57575f"
-#   inactive_tab_background = "#1b1b1d"
-#
-# [window]
-#   active_border_color = "#57575f"
-#   inactive_border_color = "#2a2a2d"
-#   inactive_text_alpha = 1.0
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
