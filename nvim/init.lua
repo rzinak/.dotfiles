@@ -52,6 +52,8 @@ vim.o.smartindent = true -- smart autoindent when starting new lines
 vim.o.textwidth = 999 -- emulate RIGHT_MARGIN = 999
 vim.o.colorcolumn = '999' -- visual margin guide (optional)
 
+vim.opt.termguicolors = true
+
 vim.opt.number = true
 
 vim.opt.mouse = 'a'
@@ -502,7 +504,7 @@ require('lazy').setup({
     priority = 1000,
     init = function()
       -- vim.cmd.colorscheme 'gruber-darker'
-      vim.cmd.colorscheme 'kanagawa-lotus'
+      vim.cmd.colorscheme 'gruvbox-material'
 
       vim.cmd.hi 'Comment gui=none'
     end,
@@ -561,6 +563,3 @@ require('lazy').setup({
     },
   },
 })
-
-vim.o.termguicolors = true
-vim.o.background = 'light'
