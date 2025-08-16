@@ -1,0 +1,63 @@
+#!/bin/bash
+
+if ! pgrep -x "spotify" > /dev/null; then
+    echo ""
+    exit 0
+fi
+
+if command -v playerctl &> /dev/null; then
+    status=$(playerctl -p spotify status 2>/dev/null)
+    
+    if [[ "$status" == "Playing" || "$status" == "Paused" ]]; then
+        artist=$(playerctl -p spotify metadata artist 2>/dev/null)
+        title=$(playerctl -p spotify metadata title 2>/dev/null)
+        
+        if [[ "$status" == "Playing" ]]; then
+            icon="▶"
+        else
+            icon="⏸"
+        fi
+        
+        max_length=40
+        if [[ -n "$artist" && -n "$title" ]]; then
+            track="$artist - $title"
+            if [[ ${#track} -gt $max_length ]]; then
+                track="${track:0:$((max_length-3))}..."
+            fi
+            echo "♫ $icon $track"
+        else
+            echo "♫ $icon Spotify"
+        fi
+    else
+        echo ""
+    fi
+    
+else
+    status=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'PlaybackStatus' 2>/dev/null | awk -F'"' 'END{print $2}')
+    
+    if [[ "$status" == "Playing" || "$status" == "Paused" ]]; then
+        metadata=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' 2>/dev/null)
+        
+        artist=$(echo "$metadata" | sed -nr '/xesam:artist"/,+2s/.*string "(.*)"$/\1/p' | tail -1)
+        title=$(echo "$metadata" | sed -nr '/xesam:title"/,+1s/.*string "(.*)"$/\1/p' | tail -1)
+        
+        if [[ "$status" == "Playing" ]]; then
+            icon="  "
+        else
+            icon=" 󰏤"
+        fi
+        
+        max_length=40
+        if [[ -n "$artist" && -n "$title" ]]; then
+            track="$artist - $title"
+            if [[ ${#track} -gt $max_length ]]; then
+                track="${track:0:$((max_length-3))}..."
+            fi
+            echo "󰓇 $icon $track"
+        else
+            echo "󰓇 $icon Spotify"
+        fi
+    else
+        echo ""
+    fi
+fi

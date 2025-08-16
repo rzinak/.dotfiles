@@ -2,7 +2,7 @@
 
 WAKATIME_CONFIG="$HOME/.wakatime.cfg"
 if [[ ! -f "$WAKATIME_CONFIG" ]]; then
-    echo "󰅐 No config"
+    echo " No config"
     exit 1
 fi
 
@@ -12,7 +12,7 @@ CACHE_FILE="/tmp/wakatime_cache"
 CACHE_DURATION=300 
 
 if [[ -z "$API_KEY" ]]; then
-    echo "󰅐 No API key"
+    echo " No API key"
     exit 1
 fi
 
@@ -27,15 +27,15 @@ response=$(curl -s -H "Authorization: Basic $(echo -n "$API_KEY:" | base64)" \
 total_seconds=$(echo "$response" | jq -r '.data[0].grand_total.total_seconds // 0' | cut -d'.' -f1)
 
 if [[ "$total_seconds" == "0" || "$total_seconds" == "null" ]]; then
-    echo "󰅐 0h 0m"
+    echo " 0h 0m"
 else
     hours=$((total_seconds / 3600))
     minutes=$(((total_seconds % 3600) / 60))
     
     if [[ $hours -gt 0 ]]; then
-        output="󰅐 ${hours}h ${minutes}m"
+        output=" ${hours}h ${minutes}m"
     else
-        output="󰅐 ${minutes}m"
+        output=" ${minutes}m"
     fi
     
     echo "$output"

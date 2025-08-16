@@ -1,18 +1,49 @@
 #!/bin/bash
 
 case "$BLOCK_BUTTON" in
-    1) bluetoothctl power on ;;    # Left click to power on
-    2) bluetoothctl power off ;;  # Middle click to power off
-    3) bluetoothctl devices ;;    # Right click to list devices
+    1) bluetoothctl power on ;;  # Left click to power on
+    2) bluetoothctl power off ;; # Middle click to power off
+    3) bluetoothctl devices ;;   # Right click to list devices
 esac
 
 if bluetoothctl show | grep -q "Powered: yes"; then
-    DEVICES=$(bluetoothctl devices Connected | awk '{print $3}')
-    if [ -z "$DEVICES" ]; then
-        echo "Bluetooth: On (No devices connected)"
+    
+    connected_devices=$(bluetoothctl devices Connected)
+    
+    if [ -z "$connected_devices" ]; then
+        echo " On"
     else
-        echo "Bluetooth: On ($DEVICES)"
+        device_list=""
+        while IFS= read -r line; do
+            
+            if [[ -n "$line" ]]; then
+                mac_address=$(echo "$line" | awk '{print $2}')
+                device_name=$(echo "$line" | cut -d' ' -f3-)
+                
+                battery_info=$(bluetoothctl info "$mac_address" | grep -i battery)
+                
+                if [[ -n "$battery_info" ]]; then
+                    battery_level=$(echo "$battery_info" | grep -oE '\([0-9]+\)' | tr -d '()')
+                    
+                    if [[ -n "$battery_level" && "$battery_level" -gt 0 ]]; then
+                        device_display="$device_name ${battery_level}%"
+                    else
+                        device_display="$device_name"
+                    fi
+                else
+                    device_display="$device_name"
+                fi
+                
+                if [[ -z "$device_list" ]]; then
+                    device_list=" $device_display"
+                else
+                    device_list=" $device_list, $device_display"
+                fi
+            fi
+        done <<< "$connected_devices"
+        
+        echo " $device_list"
     fi
 else
-    echo "Bluetooth: Off"
+    echo " Off"
 fi
