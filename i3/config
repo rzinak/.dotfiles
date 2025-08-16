@@ -40,7 +40,7 @@ floating_modifier $mod
 
 tiling_drag modifier titlebar
 
-bindsym $mod+Return exec kitty 
+bindsym $mod+Return exec alacritty 
 
 bindsym $mod+Shift+q kill
 
@@ -120,7 +120,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs out of X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'wanna exit i3' -B 'yes' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'For real? Wanna bail?' -B 'Yea, smoke i3' 'i3-msg exit'"
 
 bindsym $mod+t exec  ~/.config/i3/screenlayout/toggle_screen.sh
 bindsym $mod+Shift+t exec  ~/.config/i3/screenlayout/dual_screen.sh
@@ -154,6 +154,9 @@ exec --no-startup-id /usr/bin/flameshot --start
 exec --no-startup-id blueman-applet
 
 exec --no-startup-id xset s off -dpms
+
+# gotta install it first tho, mate polkit is also fine
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 bar {
     status_command CONTRIB_SCRIPT_DIR=~/.config/i3/i3-blocks-contrib DEFAULT_SCRIPT_DIR=/usr/share/i3blocks i3blocks -c ~/.config/i3/i3blocks.conf
