@@ -503,8 +503,8 @@ require('lazy').setup({
     'folke/tokyonight.nvim',
     priority = 1000,
     init = function()
-      -- vim.cmd.colorscheme 'gruber-darker'
-      vim.cmd.colorscheme 'gruvbox-material'
+      vim.cmd.colorscheme 'gruber-darker'
+      -- vim.cmd.colorscheme 'gruvbox-material'
 
       vim.cmd.hi 'Comment gui=none'
     end,
