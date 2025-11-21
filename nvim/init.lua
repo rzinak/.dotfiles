@@ -20,7 +20,6 @@
 =====================================================================
 =====================================================================
 =====================================================================
-
 --]]
 
 vim.g.mapleader = ' '
@@ -51,6 +50,8 @@ vim.o.smartindent = true -- smart autoindent when starting new lines
 -- Line wrap and margin
 vim.o.textwidth = 999 -- emulate RIGHT_MARGIN = 999
 vim.o.colorcolumn = '999' -- visual margin guide (optional)
+
+vim.opt.guicursor = 'n-v-i-c:block-Cursor'
 
 vim.opt.termguicolors = true
 
