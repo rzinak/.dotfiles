@@ -1,0 +1,42 @@
+$ xdpyinfo | head -20xdpyinfo | head -20
+
+renan@kub:~/.config » xdpyinfo | head -20
+name of display:    :0
+version number:    11.0
+vendor string:    The X.Org Foundation
+vendor release number:    12101011
+X.Org version: 21.1.11
+maximum request size:  16777212 bytes
+motion buffer size:  256
+bitmap unit, bit order, padding:    32, LSBFirst, 32
+image byte order:    LSBFirst
+number of supported pixmap formats:    7
+supported pixmap formats:
+    depth 1, bits_per_pixel 1, scanline_pad 32
+    depth 4, bits_per_pixel 8, scanline_pad 32
+    depth 8, bits_per_pixel 8, scanline_pad 32
+    depth 15, bits_per_pixel 16, scanline_pad 32
+    depth 16, bits_per_pixel 16, scanline_pad 32
+    depth 24, bits_per_pixel 32, scanline_pad 32
+    depth 32, bits_per_pixel 32, scanline_pad 32
+keycode range:    minimum 8, maximum 255
+focus:  window 0x560000b, revert to PointerRoot
+renan@kub:~/.config » xrandr | grep -E "connected|current"
+Screen 0: minimum 8 x 8, current 3840 x 2160, maximum 32767 x 32767
+HDMI-0 connected primary 3840x2160+0+0 (normal left inverted right x axis y axis) 697mm x 392mm
+eDP-1-1 connected (normal left inverted right x axis y axis)
+renan@kub:~/.config »
+
+xorg no monitor 4k detecta o tamanho fisico do monitor de forma errada,a í ele calcula o dpi de uma forma totalmente idiota, e isso faz a resolução parecer que foi escalada pra 150%
+
+solução pra essa merda é forçar o dpi pra 90
+
+sudo vim /etc/X11/xorg.conf.d/90-dpi.conf
+```
+
+Cola isso:
+```
+Section "Screen"
+    Identifier "Screen0"
+    Option "DPI" "96 x 96"
+EndSection
