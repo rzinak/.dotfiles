@@ -27,9 +27,9 @@ HDMI-0 connected primary 3840x2160+0+0 (normal left inverted right x axis y axis
 eDP-1-1 connected (normal left inverted right x axis y axis)
 renan@kub:~/.config »
 
-xorg no monitor 4k detecta o tamanho fisico do monitor de forma errada,a í ele calcula o dpi de uma forma totalmente idiota, e isso faz a resolução parecer que foi escalada pra 150%
+xorg no monitor 4k detecta o tamanho fisico do monitor de forma errada,aí ele calcula o dpi de uma forma totalmente idiota, e isso faz a resolução parecer que foi escalada pra 150%
 
-solução pra essa merda é forçar o dpi pra 90
+solução pra essa merda é forçar o dpi pra 96
 
 sudo vim /etc/X11/xorg.conf.d/90-dpi.conf
 ```
